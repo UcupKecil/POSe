@@ -57,7 +57,7 @@
     <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $(document).on('click', '.btn-delete', function () {
+            $(document).on('click', '#btn-delete', function () {
                 $this = $(this);
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
