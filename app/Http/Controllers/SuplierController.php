@@ -44,7 +44,7 @@ class SuplierController extends Controller
         $suplier = Suplier::create([
             'name' => $request->name,
             'address' => $request->address,
-            'phone' => $request->address
+            'phone' => $request->phone
 
         ]);
 
