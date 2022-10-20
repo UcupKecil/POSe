@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KategoriStoreRequest;
-
-use App\Http\Requests\KategoriUpdateRequest;
-use App\Http\Resources\KategoriResource;
-use App\Models\Kategori;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use DataTables;
 use Exception;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
 
+use App\Models\Kategori;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+
+use App\Http\Resources\KategoriResource;
+use Illuminate\Support\Facades\Response;
+use Yajra\DataTables\Facades\DataTables;
+
+use App\Http\Requests\KategoriStoreRequest;
+use App\Http\Requests\KategoriUpdateRequest;
 
 
 class KategoriController extends Controller
@@ -35,17 +36,13 @@ class KategoriController extends Controller
             }
             return view('kategoris.index');
 
-
-
-
-
     }
 
     public function getKategoris(Request $request)
     {
         if ($request->ajax()) {
             $data = Kategori::latest()->get();
-            return Datatables::of($data)
+            return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', 'kategoris.action')
 

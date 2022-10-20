@@ -7,9 +7,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\KategoriBeritaController;
+// use App\Http\Controllers\KategoriBeritaController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SuplierController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,11 +36,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('kategoris', [KategoriController::class, 'index']);
     Route::post('kategoris', [KategoriController::class, 'tambah'])->name('kategoris.tambah');
     Route::post('delete-kategoris', [KategoriController::class,'destroy']);
-
     Route::get('kategoris/list', [KategoriController::class, 'getKategoris'])->name('kategoris.list');
-
     Route::resource('kategoris', KategoriController::class);
-    Route::get('/kategoriberita', [KategoriBeritaController::class, 'index']);
+    // Route::get('/kategoriberita', [KategoriBeritaController::class, 'index']);
+
+    Route::get('supliers', [SuplierController::class, 'index']);
+    Route::get('supliers/list', [SuplierController::class, 'getSupliers'])->name('supliers.list');
+    Route::resource('supliers', SuplierController::class);
+    Route::post('supliers', [SuplierController::class, 'store'])->name('supliers.store');
 
     Route::resource('customers', CustomerController::class);
     Route::resource('orders', OrderController::class);
